@@ -1,44 +1,39 @@
 import sqlite3
 
-conn = sqlite3.connect('test.db') #Using the sqlite3 module#
+conn = sqlite3.connect('test.db')
 
+# Create database and a new table
 with conn:
     cur = conn.cursor()
-    cur.execute("CREATE TABLE IF NOT EXISTS tbl_persons( \
+    cur.execute("CREATE TABLE IF NOT EXISTS tbl_txtfiles( \
         ID INTEGER PRIMARY KEY AUTOINCREMENT, \
-        col_fname TEXT, \
-        col_lname TEXT, \
-        col_email TEXT \
+        col_txtfile TEXT \
         )")
     conn.commit()
-conn.close()
 
 
-conn = sqlite3.connect('test.db')
+fileList = ('information.docx','Hello.txt','myImage.png', \
+            'myMovie.mpg','World.txt','data.pdf','myPhoto.jpg')
+
+
 
 with conn:
     cur = conn.cursor()
-    cur.execute("INSERT INTO tbl_persons(col_fname, col_lname, col_email) VALUES (?,?,?)", \
-                ('Josh', 'Mass', 'josh@gmail.com'))
-    cur.execute("INSERT INTO tbl_persons(col_fname, col_lname, col_email) VALUES (?,?,?)", \
-                ('Max', 'Moore', 'max@gmail.com'))
-    cur.execute("INSERT INTO tbl_persons(col_fname, col_lname, col_email) VALUES (?,?,?)", \
-                ('Nate', 'Morris', 'nate@gmail.com'))
-    conn.commit()
-conn.close()
+    for fName in fileList:
+        if fName.endswith(".txt"):
+            
+            cur.execute('INSERT INTO tbl_txtfiles(col_txtfile) VALUES (?)', (fName,))
+            conn.commit()
 
 
-
-conn = sqlite3.connect('test.db')
 
 with conn:
     cur = conn.cursor()
-    cur.execute("SELECT col_fname,col_lname,col_email FROM tbl_persons WHERE col_fname = 'Josh'")
-    varPerson = cur.fetchall()
-    for item in varPerson:
-        msg = "First Name: {}\nLast Name: {}\nEmail {}".format(item[0],item[1],item[2])
-    print(msg)
-
+    cur.execute("SELECT col_txtfile FROM tbl_txtfiles")
+    txtFile = cur.fetchall()
+    for file in txtFile:
+        txtFile = "The found text file: {}".format(file[0])
+        print(txtFile)
 
 
 
