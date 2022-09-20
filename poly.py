@@ -1,7 +1,7 @@
 #Parent class Console
 class Console:
     name ='system'
-    user = ''
+    user = 'Tim'
     cost = ''
     endorsed_services = 'streaming gameplay'
     size = '2 GB'
@@ -21,7 +21,7 @@ class Console:
 class PS5(Console):
     D_environment = True
     cyberspace = True
-    sessionID = ''
+    sessionID = '337'
 
     def getLoginInfo(self):
         entry_user = input("Enter your name")
@@ -35,7 +35,7 @@ class PS5(Console):
 class XBOX(Console):
     icloud_streaming = True
     remote_compatibility = False
-    ipcheck = ''
+    ipcheck = '1277'
 
     def getLoginInfo(self):
         entry_user = input("Enter your name")
@@ -51,3 +51,10 @@ class XBOX(Console):
     
 gammer = Console()
 gammer.getLoginInfo()
+
+
+playstaionObject = PS5()
+playstaionObject.getLoginInfo()
+
+XBOXObject = XBOX()
+XBOXObject.getLoginInfo()
