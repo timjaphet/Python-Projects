@@ -19,7 +19,7 @@ class Console:
 
 #Child Class PS5
 class PS5(Console):
-    3D_environment = True
+    D_environment = True
     cyberspace = True
     sessionID = ''
 
@@ -38,7 +38,7 @@ class XBOX(Console):
     ipcheck = ''
 
     def getLoginInfo(self):
-        (self):entry_user = input("Enter your name")
+        entry_user = input("Enter your name")
         entry_ipcheck = input("scan ip")
         if(entry_user == self.user and entry_ipcheck == self.ipcheck):
             print("Welcome to the worlds most powerful console experince, {}".format(entry_user))
